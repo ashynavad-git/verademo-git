@@ -25,20 +25,24 @@ jobs:
     
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
+      - uses: veracode/veracode-uploadandscan-action@0.2.1
 
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install flake8 pytest
-        
-      # Runs a single command using the runners shell
-      - name: SCA scan
-        env:
-          SRCCLR_API_TOKEN: ${{ secrets.SRCCLR_API_TOKEN }}
-        run: curl -sSL https://download.sourceclear.com/ci.sh | bash -s – scan
+      - name: Maven
+        run: maven package
 
-      # Runs a set of commands using the runners shell
-      #- name: Run a multi-line script
-      #  run: |
-      #    echo Add other actions to build,
-      #    echo test, and deploy your project.
+      - name: Veracode Upload And Scan
+        # You may pin to the exact commit or the version.
+        # uses: veracode/veracode-uploadandscan-action@c5e63c8383debb26a0d48250eab75d94327635ba
+        with:
+          # appname
+          appname: "VeraDemo-GitHub-Actions"
+          # createprofile
+          createprofile: true
+          # filepath
+          filepath: target/verademo.war
+          # version
+          version: "Scan from Github job: ${{ github.run_id }}"
+          # vid
+          vid: ${{ secrets.VERACODE_API_ID }}
+          # vkey
+          vkey:  ${{ secrets.VERACODE_API_KEY }}
