@@ -37,4 +37,4 @@ jobs:
         filepath: target/verademo.war
         sandboxname: Github-Sandbox
         vid: ${{ secrets.VERACODE_API_ID }}
-        vkey: ${{ secrets.VERACODE_API_VALUE }}
+        vkey: ${{ secrets.VERACODE_API_KEY }}
