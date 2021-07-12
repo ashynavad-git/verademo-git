@@ -31,9 +31,10 @@ jobs:
       uses: veracode/veracode-uploadandscan-action@0.2.1
       with:
         appname: Verademo GitHub
-        createprofile: false
+        createprofile: true
+        createsandbox: true
         version: ${{ github.run_id }}
-        filepath: app/target/verademo.war
+        filepath: target/verademo.war
         sandboxname: Github-Sandbox
         vid: ${{ secrets.VERACODE_API_ID }}
         vkey: ${{ secrets.VERACODE_API_VALUE }}
