@@ -28,7 +28,7 @@ jobs:
       run: mvn package
         
     - name: Veracode Upload And Scan
-      uses: veracode/veracode-uploadandscan-action@0.2.1
+      uses: veracode/veracode-uploadandscan-action@master
       with:
         appname: Verademo GitHub
         createprofile: true
