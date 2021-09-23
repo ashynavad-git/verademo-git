@@ -31,7 +31,7 @@ jobs:
       run: |
             curl https://downloads.veracode.com/securityscan/pipeline-scan-LATEST.zip -o pipeline-scan.zip
             unzip pipeline-scan.zip
-            java -jar pipeline-scan.jar --file target/verademo.war -vid ${{ secrets.VERACODE_API_ID }} -vkey ${{ secrets.VERACODE_API_KEY }}
+            java -jar pipeline-scan.jar --file target/verademo.war -vid ${{ secrets.VERACODE_API_ID }} -vkey ${{ secrets.VERACODE_API_KEY }} || true
             
     - name: Convert pipeline scan output to SARIF format
       id: convert
