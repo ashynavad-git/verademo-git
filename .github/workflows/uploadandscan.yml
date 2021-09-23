@@ -27,14 +27,23 @@ jobs:
     - name: Build with Maven
       run: mvn package
         
-    - name: Veracode Upload And Scan
-      uses: veracode/veracode-uploadandscan-action@master
+    - name: Veracode Pipeline
+      run: |
+            curl https://downloads.veracode.com/securityscan/pipeline-scan-LATEST.zip -o pipeline-scan.zip
+            unzip pipeline-scan.zip
+            java -jar pipeline-scan.jar --file target/verademo.war -vid ${{ secrets.VERACODE_API_ID }} -vkey ${{ secrets.VERACODE_API_KEY }}
+            
+    - name: Convert pipeline scan output to SARIF format
+      id: convert
+      uses: Veracode/veracode-pipeline-scan-results-to-sarif@v0.1.2
       with:
-        appname: Verademo GitHub
-        createprofile: true
-        createsandbox: true
-        version: ${{ github.run_id }}
-        filepath: target/verademo.war
-        sandboxname: Github-Sandbox
-        vid: ${{ secrets.VERACODE_API_ID }}
-        vkey: ${{ secrets.VERACODE_API_KEY }}
+       pipeline-results-json: results.json
+       output-results-sarif: veracode-results.sarif
+       source-base-path-1: "^com/veracode:src/main/java/com/veracode"
+       source-base-path-2: "^WEB-INF:src/main/webapp/WEB-INF"
+       finding-rule-level: "3:1:0"
+    
+    - name: upload sarif file to repository
+      uses: github/codeql-action/upload-sarif@v1
+      with: 
+       sarif_file: veracode-results.sarif
