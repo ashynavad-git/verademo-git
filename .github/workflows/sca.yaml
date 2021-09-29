@@ -21,4 +21,6 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
+        env: 
+          SRCCLR_API_TOKEN: ${{ secrets.SRCCLR_API_TOKEN }}
         run: curl -sSL https://download.sourceclear.com/ci.sh | bash -s – scan
