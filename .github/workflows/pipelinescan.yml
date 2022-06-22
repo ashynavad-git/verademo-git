@@ -34,6 +34,10 @@ jobs:
             curl https://downloads.veracode.com/securityscan/pipeline-scan-LATEST.zip -o pipeline-scan.zip
             unzip pipeline-scan.zip
             java -jar pipeline-scan.jar --file target/verademo.war -vid ${{ secrets.VERACODE_API_ID }} -vkey ${{ secrets.VERACODE_API_KEY }} || true
+
+    - name: Replace WEB-INF with web-inf
+      run: |
+           sed -i 's/WEB-INF/web-inf/' results.json         
             
     - name: Convert pipeline scan output to SARIF format
       id: convert
