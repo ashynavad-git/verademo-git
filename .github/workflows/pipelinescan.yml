@@ -6,10 +6,6 @@ name: Pipeline Scan
 on:
   workflow_dispatch
   
-permissions:
-    contents: read # for actions/checkout to fetch code
-    security-events: write
-
 jobs:
 
   build:
@@ -18,6 +14,7 @@ jobs:
     permissions:
       contents: read
       packages: write
+      security-events: write
 
     steps:
     - uses: actions/checkout@v2
