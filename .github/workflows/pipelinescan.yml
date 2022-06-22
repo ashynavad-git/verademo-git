@@ -43,7 +43,15 @@ jobs:
        source-base-path-2: "^WEB-INF:src/main/webapp/WEB-INF"
        finding-rule-level: "3:1:0"
     
-    - name: upload sarif file to repository
-      uses: github/codeql-action/upload-sarif@v2
-      with: 
-       sarif_file: veracode-results.sarif
+#    - name: upload sarif file to repository
+#      uses: github/codeql-action/upload-sarif@v2
+#      with: 
+#       sarif_file: veracode-results.sarif
+    - name: Save files
+      uses: actions/upload-artifact@v3
+      with:
+        name: veracode_json_and_sarif_results
+        path: |
+         results.json
+         veracode-results.sarif
+        retention-days: 15
