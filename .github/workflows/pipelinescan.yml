@@ -5,8 +5,13 @@ name: Pipeline Scan
 
 on:
   workflow_dispatch
+  
+permissions:
+    contents: read # for actions/checkout to fetch code
+    security-events: write
 
 jobs:
+
   build:
 
     runs-on: ubuntu-latest
