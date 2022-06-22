@@ -35,7 +35,7 @@ jobs:
             
     - name: Convert pipeline scan output to SARIF format
       id: convert
-      uses: Veracode/veracode-pipeline-scan-results-to-sarif@v0.1.2
+      uses: Veracode/veracode-pipeline-scan-results-to-sarif@vmaster
       with:
        pipeline-results-json: results.json
        output-results-sarif: veracode-results.sarif
