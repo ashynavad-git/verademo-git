@@ -31,5 +31,13 @@ jobs:
         uses: veracode/veracode-sca@v1.09
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          create-issues: false 
-          fail-on-cvss: 1     
+          create-issues: false
+          fail-on-cvss: 10
+          debug: true
+          quick: false
+          update_advisor: false
+          min-cvss-for-issue: 0
+          path: .
+          skip-collectors: false
+          allow-dirty: false
+          recursive: false 
