@@ -27,8 +27,8 @@ steps:
     script: 'Invoke-WebRequest -Uri "https://downloads.veracode.com/securityscan/pipeline-scan-LATEST.zip" -OutFile pipeline-scan.zip'
 - task: Veracode@3
   inputs:
-  ConnectionDetailsSelection: 'Endpoint'
-  veracodeAppProfile: '$(system.teamProject)'
-  version: '$(build.buildNumber)'
-  filepath: 'pipeline-scan.zip'
-  maximumWaitTime: '360'
+    ConnectionDetailsSelection: 'Endpoint'
+    veracodeAppProfile: '$(system.teamProject)'
+    version: '$(build.buildNumber)'
+    filepath: 'pipeline-scan.zip'
+    maximumWaitTime: '360'
