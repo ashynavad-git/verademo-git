@@ -28,7 +28,7 @@ jobs:
       run: mvn package
         
     - name: Veracode Upload And Scan
-      uses: docker://veracode/api-wrapper-java@latest
+      uses: docker://veracode/api-wrapper-java:latest
       with:  
         entrypoint: java
         args: -jar /opt/veracode/api-wrapper.jar -vid ${{ secrets.VERACODE_API_ID }} -vkey ${{ secrets.VERACODE_API_KEY }} -action UploadAndScan -createprofile false -appname Verademo GitHub -version ${{ github.run_id }} -filepath target/verademo.war 
