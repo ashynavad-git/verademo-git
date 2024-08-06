@@ -30,8 +30,9 @@ jobs:
     - name: Veracode Upload And Scan
       uses: veracode/veracode-uploadandscan-action@master
       with:
-        appname: Verademo GitHub
+        appname: Verademo-teams
         createprofile: true
+        teams: Rolex team
         createsandbox: true
         canjobfail: true
         version: ${{ github.run_id }}
