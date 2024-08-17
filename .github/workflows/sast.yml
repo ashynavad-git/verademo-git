@@ -35,6 +35,9 @@ jobs:
           token: ${{ github.event.client_payload.token }}
           vid: ${{ secrets.VERACODE_API_ID }}
           vkey: ${{ secrets.VERACODE_API_KEY }}
+          appname: Azure
+        #  source_repository: ${{ github.event.client_payload.repository.full_name }}
+        #  check_run_id: ${{ needs.register.outputs.run_id }}
         
     - name: Veracode Upload And Scan
       uses: veracode/veracode-uploadandscan-action@master
