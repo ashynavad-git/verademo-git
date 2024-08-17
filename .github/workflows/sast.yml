@@ -24,8 +24,8 @@ jobs:
         server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
         settings-path: ${{ github.workspace }} # location for the settings.xml file
 
-    - name: Build with Maven
-      run: mvn package
+  #  - name: Build with Maven
+  #    run: mvn package
 
     - name: Verify Veracode API credentials
       id: verify_api_creds
@@ -35,7 +35,7 @@ jobs:
           token: ${{ github.event.client_payload.token }}
           vid: ${{ secrets.VERACODE_API_ID }}
           vkey: ${{ secrets.VERACODE_API_KEY }}
-          appname: Azure
+          appname: Verademo-teams
         #  source_repository: ${{ github.event.client_payload.repository.full_name }}
         #  check_run_id: ${{ needs.register.outputs.run_id }}
         
